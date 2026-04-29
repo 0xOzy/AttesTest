@@ -1,0 +1,59 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@theme {
+  --color-bg-base: var(--bg-base);
+  --color-text-primary: var(--text-primary);
+  --color-accent-primary: var(--accent-primary);
+  --color-border-color: var(--border-color);
+
+  --font-bahuss: var(--font-bahuss);
+  --font-inter: var(--font-inter);
+  --font-geist-mono: var(--font-geist-mono);
+
+  --shadow-brutal: 4px 4px 0px 0px var(--border-color);
+  --shadow-brutal-lg: 8px 8px 0px 0px var(--border-color);
+  --shadow-brutal-active: 2px 2px 0px 0px var(--border-color);
+
+  /* Force zero radius for exact Brutalism match */
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+  --radius-2xl: 0px;
+  --radius-3xl: 0px;
+  --radius-full: 0px;
+}
+
+@layer base {
+  :root {
+    /* Dark Mode (Default) */
+    --bg-base: #010B13;
+    --text-primary: #F7E7CE;
+    --accent-primary: #D4AF37;
+    --border-color: #D4AF37;
+  }
+
+  /* Light mode class, applied when .light is active on HTML or wrapper */
+  .light {
+    --bg-base: #FDFDFD;
+    --text-primary: #010B13;
+    --accent-primary: #E03C31;
+    --border-color: #010B13;
+  }
+
+  body {
+    background-color: var(--bg-base);
+    color: var(--text-primary);
+    font-family: var(--font-inter), sans-serif;
+  }
+
+  /* Brutalism Reusable Utilities */
+  .brutal-card {
+    @apply border-[3px] border-border-color bg-bg-base shadow-brutal transition-all;
+  }
+  
+  .brutal-btn {
+    @apply border-[3px] border-border-color shadow-brutal hover:shadow-brutal-active hover:translate-y-[2px] hover:translate-x-[2px] transition-all font-bold;
+  }
+}

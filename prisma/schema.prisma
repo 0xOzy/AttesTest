@@ -1,0 +1,141 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum Role {
+  USER
+  CREATOR
+  ADMIN
+}
+
+enum SubscriptionTier {
+  STARTER
+  PRO
+  ENTERPRISE
+}
+
+enum AttestationStatus {
+  PENDING
+  CONFIRMED
+  REVOKED
+}
+
+enum TransactionType {
+  TOPUP
+  DEDUCTION
+}
+
+model User {
+  id                 String     @id @default(uuid())
+  walletAddress      String     @unique
+  email              String?
+  name               String?
+  role               Role       @default(USER)
+  subscriptionTier   SubscriptionTier @default(STARTER)
+  subscriptionExp    DateTime?
+  creditBalance      Float      @default(0)
+  createdAt          DateTime   @default(now())
+  updatedAt          DateTime   @updatedAt
+
+  schemas            Schema[]
+  issuedAttestations Attestation[]
+  subscription       Subscription?
+  apiKeys            ApiKey[]
+  creditTransactions CreditTransaction[]
+}
+
+model Schema {
+  id              String   @id @default(uuid())
+  schemaUID       String   @unique
+  name            String
+  description     String?
+  schemaString    String
+  revocable       Boolean  @default(true)
+  creatorId       String
+  creator         User     @relation(fields: [creatorId], references: [id])
+  isActive        Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  attestations    Attestation[]
+}
+
+model Attestation {
+  id              String   @id @default(uuid())
+  attestationUID  String   @unique
+  schemaId        String
+  schema          Schema   @relation(fields: [schemaId], references: [id])
+  issuerId        String
+  issuer          User     @relation(fields: [issuerId], references: [id])
+  recipient       String
+  data            Json
+  status          AttestationStatus @default(PENDING)
+  txHash          String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model Subscription {
+  id          String   @id @default(uuid())
+  userId      String   @unique
+  user        User     @relation(fields: [userId], references: [id])
+  tier        SubscriptionTier
+  amountUSD   Float
+  startDate   DateTime @default(now())
+  endDate     DateTime
+  txHash      String?
+  isActive    Boolean  @default(true)
+}
+
+model ApiKey {
+  id          String   @id @default(uuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  key         String   @unique // hashed
+  name        String
+  scope       String   // "read", "write"
+  rateLimit   Int      @default(60) // calls per minute
+  usageCount  Int      @default(0)
+  lastUsedAt  DateTime?
+  expiresAt   DateTime?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+}
+
+model CreditTransaction {
+  id          String   @id @default(uuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  amount      Float
+  type        TransactionType
+  txHash      String?
+  createdAt   DateTime @default(now())
+}
+
+model ContactSubmission {
+  id          String   @id @default(cuid())
+  name        String
+  email       String
+  company     String?
+  message     String
+  status      String   @default("NEW")   // NEW -> CONTACTED -> CLOSED
+  notes       String?                    // Admin notes (optional)
+  assignedTo  String?                    // Admin assigned (optional)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model SystemLog {
+  id          String   @id @default(uuid())
+  action      String
+  actorId     String?  // UUID or "SYSTEM"
+  targetId    String?
+  metadata    Json?
+  createdAt   DateTime @default(now())
+}
