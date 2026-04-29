@@ -1,61 +1,30 @@
-```markdown
-# 🏛️ AttestID
+# 🏛️ AttestID — No-Code On-Chain Credential Platform for the Web4 Era
 
-> No-Code On-Chain Credential Platform for the Web4 Era
-
-[![Base](https://img.shields.io/badge/Network-Base_Sepolia-0052FF?style=for-the-badge&logo=base&logoColor=white)](https://base.org)
-[![EAS](https://img.shields.io/badge/Protocol-EAS-5B5B5B?style=for-the-badge&logo=ethereum&logoColor=white)](https://attest.org)
-[![Next.js](https://img.shields.io/badge/Framework-Next.js_14-000000?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
-[![TypeScript](https://img.shields.io/badge/Code-TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Network](https://img.shields.io/badge/Network-Base_Sepolia-0052FF?style=for-the-badge&logo=base&logoColor=white)](https://base.org)
+[![Protocol](https://img.shields.io/badge/Protocol-EAS-5B5B5B?style=for-the-badge&logo=ethereum&logoColor=white)](https://attest.org)
+[![Framework](https://img.shields.io/badge/Framework-Next.js_14-000000?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
+[![Language](https://img.shields.io/badge/Code-TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](./LICENSE)
 [![Status](https://img.shields.io/badge/Status-Testnet-yellow?style=for-the-badge)](https://attestid.xyz)
 
----
+**AttestID** is a full-stack SaaS platform that lets anyone — DAOs, event organizers, AI developers, and Web3 freelancers — issue, manage, and verify on-chain attestations on **Base** without writing a single line of Solidity.
 
-## 📖 Table of Contents
+Built on the **Ethereum Attestation Service (EAS)**, AttestID transforms static credentials into composable, verifiable digital assets for both **humans and AI agents**.
 
-- [Overview](#-overview)
-- [Why AttestID](#-why-attestid)
-- [Architecture](#-architecture)
-- [Tech Stack](#-tech-stack)
-- [Target Users](#-target-users)
-- [Monetization Model](#-monetization-model)
-- [Getting Started](#-getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-  - [Environment Variables](#environment-variables)
-  - [Quick Deploy with Docker](#quick-deploy-with-docker)
-- [Documentation](#-documentation)
-- [Smart Contracts](#-smart-contracts)
-- [Roadmap](#-roadmap)
-- [Contributing](#-contributing)
-- [License & Status](#-license--status)
-- [Contact](#-contact)
-
----
-
-## 🧠 Overview
-
-**AttestID** is a full-stack SaaS platform that democratizes on-chain attestations. Anyone — **DAOs, event organizers, AI developers, and Web3 freelancers** — can issue, manage, and verify verifiable credentials on the **Base** blockchain **without writing a single line of Solidity**.
-
-Built on the **Ethereum Attestation Service (EAS)** standard, AttestID transforms static credentials into composable, verifiable digital assets for **both humans and autonomous AI agents**. This is identity infrastructure for **Web4** — where AI agents and humans interact seamlessly, and trust is verified on-chain.
-
----
 
 ## ✨ Why AttestID?
 
 | Feature | Description |
 |:---|:---|
-| 🧩 **No-Code Schema Builder** | Visually construct EAS schemas through an intuitive drag‑and‑drop interface — no smart contract knowledge required |
+| 🧩 **No‑Code Schema Builder** | Visually construct EAS schemas through an intuitive drag‑and‑drop interface |
 | ⛽ **Gasless USDC Payments** | Powered by **Circle Nanopayments** & **x402 Protocol**, supporting micro‑transactions as low as **$0.000001** |
-| 💰 **Hybrid Monetization** | **Subscription** via Base Pay for regular users + **Pay‑Per‑Use** via x402 for developers and AI agents |
-| 🤖 **Multi-Entity Credentials** | Issue verifiable badges for **humans** (DAO membership, skill endorsements) and machine‑readable **licenses for AI agents** (Know Your Agent — KYA) |
+| 💰 **Hybrid Monetization** | **Subscription** via Base Pay + **Pay‑Per‑Use** via x402 for developers and AI agents |
+| 🤖 **Multi‑Entity Credentials** | Issue verifiable badges for **humans** (DAO membership, skill endorsements) and machine‑readable licenses for **AI agents** |
 | 🔌 **API‑First & SDK‑Ready** | Standardized REST API with `@attestid/client` SDK for seamless third‑party integration |
 | 📚 **Developer Portal** | Comprehensive `/docs` with quickstart guides, interactive API reference, tutorials, and FAQ |
 | 🎨 **Bauhaus × Brutalism UI** | A distinctive visual identity with bold typography, sharp geometric edges, and luxury color palettes |
 | 🛡️ **Enterprise‑Ready** | Custom SLA, dedicated support, and a "Contact Sales" pipeline for large‑scale deployments |
 
----
 
 ## 🏗️ Architecture
 
@@ -76,8 +45,6 @@ graph TD
     M --> N[RainbowKit + Wagmi v2]
 ```
 
----
-
 🛠️ Tech Stack
 
 Layer Technology Purpose
@@ -91,8 +58,6 @@ Payments Circle Paymaster + Nanopayments, x402 Protocol Gasless USDC micro‑tra
 Hosting Vercel / VPS (Docker + Nginx) Flexible deployment from serverless to self‑hosted
 Containerization Docker + multi‑stage builds Optimized production images with Next.js standalone output
 
----
-
 🎯 Target Users
 
 User Type Use Case
@@ -101,8 +66,6 @@ User Type Use Case
 🤖 AI Developers Issue machine‑readable Agent Licenses for autonomous AI agents (KYA)
 💼 Web3 Freelancers Receive verifiable on‑chain skill endorsements and reputation scores
 🔒 DeFi Protocols Gated access to private pools based on attestation‑verified credentials
-
----
 
 💰 Monetization Model
 
@@ -113,8 +76,6 @@ Subscription Base Pay — recurring USDC billing with one‑time approval Regula
 Pay‑Per‑Use x402 Protocol + Circle Nanopayments — gasless per‑API‑call billing Developers & AI Agents $0.01/verify**, **$0.05/create
 
 All payments are settled in USDC on Base L2 with zero gas fees for micro‑transactions.
-
----
 
 🚀 Getting Started
 
@@ -187,8 +148,6 @@ docker run -d \
   attestid:latest
 ```
 
----
-
 📚 Documentation
 
 Full developer documentation is available at /docs after deployment:
@@ -203,8 +162,6 @@ Section Description
 🖥️ Dashboard Guide How to use the User and Admin dashboards
 ❓ FAQ & Support Common questions and support contact information
 
----
-
 ⛓️ Smart Contracts
 
 AttestID leverages existing audited infrastructure on Base Sepolia — no custom smart contracts required.
@@ -215,10 +172,6 @@ EAS Schema Registry 0x4200000000000000000000000000000000000020 Credential schema
 Circle Paymaster 0x31BE08D380A21fc740883c0BC434FcFc88740b58 Gasless transaction sponsorship
 USDC (Base Sepolia) 0x036CbD53842c5426634e7929541eC2318f3dCF7e Payment token for subscriptions and pay‑per‑use
 
-All contracts are audited and production‑ready on Base Sepolia testnet.
-
----
-
 🗺️ Roadmap
 
 Phase Milestone Status
@@ -228,8 +181,6 @@ Q3 2026 @attestid/client SDK v1.0 with full x402 support 📅 Planned
 Q3 2026 ZK‑Attestations for privacy‑preserving verification 📅 Planned
 Q4 2026 Multi‑chain expansion (Optimism, Arbitrum) 📅 Planned
 Q4 2026 AI Agent Marketplace integration 📅 Planned
-
----
 
 🤝 Contributing
 
@@ -243,8 +194,6 @@ We welcome contributions from the community! Here's how you can help:
 
 Please read our Code of Conduct before contributing.
 
----
-
 📄 License & Status
 
 Attribute Value
@@ -252,8 +201,6 @@ Current Status 🟡 Testnet (Base Sepolia)
 Mainnet Target Q2 2026
 License MIT
 Built With ❤️ + AI Studio Vibe Coding
-
----
 
 📬 Contact
 
